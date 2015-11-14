@@ -11,6 +11,8 @@ set -o nounset
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
+NIX_TARBALL=${NIX_VERSION_FULL}.tar.bz2
+NIX_URL=https://nixos.org/releases/nix/nix-${NIX_VERSION}/${NIX_TARBALL}
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
@@ -36,10 +38,10 @@ else
 
   mkdir -p $CACHE_DIR/nix-mnt
   cd $CACHE_DIR/nix-mnt
-  fetch nix-${NIX_VERSION}.tar.bz2 http://hydra.nixos.org/build/17897595/download/1/${NIX_VERSION_FULL}.tar.bz2
-  tar xjf nix-${NIX_VERSION}.tar.bz2
+  fetch $NIX_TARBALL $NIX_URL
+  tar xjf $NIX_TARBALL
   echo "Done extracting." | indent
-  rm nix-${NIX_VERSION}.tar.bz2
+  rm $NIX_TARBALL
 fi
 
 topic "Copying nix to $NIX_ROOT_PATH"
