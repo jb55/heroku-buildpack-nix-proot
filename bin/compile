@@ -11,12 +11,13 @@ set -o nounset
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
-NIX_TARBALL=${NIX_VERSION_FULL}.tar.bz2
-NIX_URL=https://nixos.org/releases/nix/nix-${NIX_VERSION}/${NIX_TARBALL}
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 source $DIR/script-common
+
+NIX_TARBALL=${NIX_VERSION_FULL}.tar.bz2
+NIX_URL=https://nixos.org/releases/nix/nix-${NIX_VERSION}/${NIX_TARBALL}
 
 export_env_dir $ENV_DIR
 
