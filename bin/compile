@@ -58,7 +58,12 @@ rsync -a --exclude-from=$BUILD_DIR/.slugexclude $NIX_MNT/ $BUILD_DIR/nix-mnt
 
 if [ ! -e /tmp/closure.log ]; then
   topic "Build environment set up."
-  bash build
+  echo "To finish building, run:" | indent
+  echo "$ heroku run --size=PX build" | indent
+  echo
+  echo "Then complete the deploy with:" | indent
+  echo "$ git commit --amend --no-edit" | indent
+  echo "$ git push -f heroku master" | indent
 else
   if [ -e $BUILD_DIR/post-install.sh ]; then
     source $BUILD_DIR/post-install.sh
