@@ -58,7 +58,7 @@ rsync -a --exclude-from=$BUILD_DIR/.slugexclude $NIX_MNT/ $BUILD_DIR/nix-mnt
 
 if [ ! -e /tmp/closure.log ]; then
   topic "Build environment set up."
-  ./build
+  bash build
 else
   if [ -e $BUILD_DIR/post-install.sh ]; then
     source $BUILD_DIR/post-install.sh
