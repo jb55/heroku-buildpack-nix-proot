@@ -47,6 +47,7 @@ fi
 topic "Building $PROG_NAME from $NIX_FILE"
 
 # nix-build registers app as a garbage collector root -- prevents its being removed
+echo "Building with $NIX_FILE"
 nix-build --cores 0 $NIX_FILE 2>&1| indent
 
 nix-store -qR $BUILD_DIR/result > /tmp/closure.log
